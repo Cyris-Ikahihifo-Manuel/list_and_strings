@@ -18,8 +18,9 @@ def text(message):
     print(message)
 
 
-# just sorting out the scores list in ascending order so that i can have the highest value
+# just sorting out the scores list in order from highest to lowest so that i can have the highest value
 scores.sort()
+scores.reverse()
 
 # printing the 3rd item in the lists. i put 2 within the brackets since the index in items start from 0.
 text(names[2])
@@ -32,4 +33,4 @@ text(scores)
 # using both the names and scores list in a print statement
 text("Leaderboard")
 for score in scores:
-    print()
+    print("{}. {}: {}".format(scores[scores.index(score)] + 1, names[scores.index(score)], score))
