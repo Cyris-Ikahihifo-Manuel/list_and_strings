@@ -1,7 +1,7 @@
 # guesses is equal to word, which is equal to guess which equals 0 because they're all undefined at the moment
 
-guesses = word = guess = 0
-letters = []
+guesses = guess = 0
+letters = hints = []
 
 # response function that reiterates itself until the user has input something within the parameter 'boundaries' and
 # the user for input displaying the message parameter. If the user doesnt input a value that isn't equal to the parameter
@@ -31,8 +31,24 @@ def text(message):
 text("Welcome to word guesser")
 word = response("Enter the word that someone has to guess", "Error, enter any word")
 
-while guess != word:
+while guess != word or guesses == 5:
     guess = response("Guess what the word is", "Error, you must guess by answering")
-    for letter in guess:
-        if letter == word[guess.index(letter)]:
-            
+    if guess == "?":
+        text("List of hints")
+        for hint in hints:
+            text(hint)
+    else:
+        text("That was incorrect")
+        guesses += 1
+        hints.append(guess)
+        if guesses == 1:
+            text("The first letter of the word is {}".format(word[0]))
+            hints.append("The first letter of the word is {}".format(word[0]))
+        elif guesses == 3:
+            text("The last letter of the word is {}".format(word[len(word) - 1]))
+            hints.append("The last letter of the word is {}".format(word[len(word) - 1]))
+
+if guess != word:
+    text("Incorrect, you lose!")
+else:
+    text("Correct, you win!")

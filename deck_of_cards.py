@@ -4,6 +4,7 @@ import random
 
 # card function
 
+
 def shuffle_cards():
     suits = ['♥', '♦', '♣', '♠']
     cards_value = []
@@ -11,22 +12,23 @@ def shuffle_cards():
     # this will add 13 values within the cards_value list
 
     for i in range(13):
-        card_value.append(i + 1)
+        cards_value.append(i + 1)
 
     deck = []
 
     for suit in suits:
-        for cards in card:
-            if cards == 1:
-                cards = 'A'
-            elif cards == 11:
-                cards = 'J'
+        for cards in cards_value:
+            if cards_value == 1:
+                cards_value = 'A'
+            elif cards_value == 11:
+                cards_value = 'J'
             elif cards == 12:
-                cards = 'Q'
+                cards_value = 'Q'
             elif cards == 13:
-                cards = 'K'
-            deck.append(str(cards) + random.choice(suit))
+                cards_value = 'K'
+            deck.append(str(cards_value) + random.choice(suit))
     return deck
+
 
 # player1, player2 are equal to each other since they're blank lists by default and will be used later on in the code
 
