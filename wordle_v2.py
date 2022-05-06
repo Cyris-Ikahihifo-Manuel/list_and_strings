@@ -31,14 +31,17 @@ def text(message):
 text("Welcome to word guesser")
 word = response("Enter the word that someone has to guess", "Error, enter any word")
 
-while guess != word or guesses == 5:
-    guess = response("Guess what the word is", "Error, you must guess by answering")
+while guess != word:
+    if guesses == 5:
+        break
+    guess = response("Guess what the word is (enter ? for the words youve done before and for the hints)", "Error, you must guess by answering")
     if guess == "?":
         text("List of hints")
         for hint in hints:
-            text(hint)
+            print(hint)
     else:
-        text("That was incorrect")
+        if guess != word:
+            text("That was incorrect")
         guesses += 1
         hints.append(guess)
         if guesses == 1:
