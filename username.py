@@ -16,7 +16,7 @@ not_finished = True
 # student's name and the random.randint should randomise the student's year level
 
 
-for student in range(random.randint(50, 100)):
+for student in range(2):
     first_names.append("")
     surnames.append("")
     for i in range(random.randint(3, 20)):
@@ -25,6 +25,12 @@ for student in range(random.randint(50, 100)):
         surnames[student] = surnames[student] + random.choice(letter)
     year_level.append(random.randint(9, 13))
 
+print(len(first_names))
+print(len(surnames))
+print(len(year_level))
+print(first_names)
+print(surnames)
+print(year_level)
 
 # question_function that will reiterate itself until the user has input a valid value. If the user inputs an invalid
 # value the function should display the error_message parameter
@@ -59,12 +65,6 @@ while not_finished:
             text("List of students usernames")
             print()
             for student in first_names:
-                print(str(31 - year_level[first_names.index(student)]) + surnames[first_names.index(student)].title()
-                      + student[0].upper())
+                print(str(year_level[first_names.index(student)]) + surnames[first_names.index(student)].title() + student[0].upper())
     else:
-        student_exists = False
-        for student in first_names:
-            if response == str(31 - year_level[first_names.index(student)]) + surnames[first_names.index(student)].title() + student[0].upper():
-                student_exists = True
-        if not student_exists:
-            text("Error, that username doesn't exist")
+        text("That username doesnt exist")
