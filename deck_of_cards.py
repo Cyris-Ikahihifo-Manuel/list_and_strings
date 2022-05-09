@@ -17,16 +17,18 @@ def shuffle_cards():
     deck = []
 
     for suit in suits:
-        for _ in cards_value:
-            if cards_value == 1:
-                cards_value = 'A'
-            elif cards_value == 11:
-                cards_value = 'J'
-            elif cards_value == 12:
-                cards_value = 'Q'
-            elif cards_value == 13:
-                cards_value = 'K'
-            deck.append(str(random.choice(cards_value)) + random.choice(suit))
+        for cards in cards_value:
+            if cards == 1:
+                card = 'A'
+            elif cards == 11:
+                card = 'J'
+            elif cards == 12:
+                card = 'Q'
+            elif cards == 13:
+                card = 'K'
+            else:
+                card = str(cards)
+            deck.append(str(card + suit))
     return deck
 
 
@@ -34,6 +36,7 @@ def shuffle_cards():
 # if they would equal the same (they store the same lists or randomisation of 'cards')
 
 deck_of_cards = shuffle_cards()
+random.shuffle(deck_of_cards)
 player1 = deck_of_cards[0:len(deck_of_cards) // 2]
 player2 = deck_of_cards[len(deck_of_cards) // 2: len(deck_of_cards)]
 

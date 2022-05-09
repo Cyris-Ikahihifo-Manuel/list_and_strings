@@ -56,7 +56,15 @@ while not_finished:
     if response == "?":
         response = question_func("Do you need to see their usernames?", "enter either y/n")
         if response == "y":
+            text("List of students usernames")
+            print()
             for student in first_names:
-                print(str(year_level[first_names.index(student)]) + surnames[first_names.index(student)].title()
+                print(str(31 - year_level[first_names.index(student)]) + surnames[first_names.index(student)].title()
                       + student[0].upper())
-
+    else:
+        student_exists = False
+        for student in first_names:
+            if response == str(31 - year_level[first_names.index(student)]) + surnames[first_names.index(student)].title() + student[0].upper():
+                student_exists = True
+        if not student_exists:
+            text("Error, that username doesn't exist")
