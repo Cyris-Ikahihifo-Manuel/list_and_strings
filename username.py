@@ -1,52 +1,22 @@
-# import random module for the random names
+# importing random module in order to randomise names (just because i cant think of names)
 
 import random
 
-# letters list to come up with names since i cant think of any names
+# letters list (letters list for the random module because i cant think of names)
 
-letter = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
-          'w', 'x', 'y', 'z']
+letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v",
+           "w", "x", "y", "z"]
 
-# bunch of lists that will keep track of a "student's" first name, surname and year level
+# first_names, surnames, year_level and usernames lists to store the student's first name, their surname and when they started in
+# which year. the reason i made it why they are all empty lists (and should be equal to each other) instead of equalling
+# each other (instead of first_names = surnames = year_level = []) is because this does not work out on how i expect
+# the program to run
 
-first_names = surnames = year_level = []
-not_finished = True
+first_names = []
+surnames = []
+year_level = []
 
-# this first for loop should repeat it between 100 to 200 times, the second and third for loop should randomise the
-# student's name and the random.randint should randomise the student's year level
-
-
-for student in range(2):
-    first_names.append("")
-    surnames.append("")
-    for i in range(random.randint(3, 20)):
-        first_names[student] = str(first_names[student]) + random.choice(letter)
-    for i in range(random.randint(3, 20)):
-        surnames[student] = surnames[student] + random.choice(letter)
-    year_level.append(random.randint(9, 13))
-
-print(len(first_names))
-print(len(surnames))
-print(len(year_level))
-print(first_names)
-print(surnames)
-print(year_level)
-
-# question_function that will reiterate itself until the user has input a valid value. If the user inputs an invalid
-# value the function should display the error_message parameter
-
-
-def question_func(question, error_message):
-    while True:
-        print()
-        answer = input(question).lower().strip()
-        if len(answer) == 0:
-            text("Error, " + error_message)
-        else:
-            return answer
-
-
-# text function, not for any other purpose than aesthetics
+# text function to make things easier to read when the program is running
 
 
 def text(message):
@@ -54,17 +24,57 @@ def text(message):
     print(message)
 
 
-# main program running
+# the question function should reiterate itself until the user has input something other than an empty string
 
+
+def question(message):
+    while True:
+        print()
+        answer = input(message)
+        if len(answer) != 0:
+            return answer
+        else:
+            text("Error, enter something")
+
+
+# this is to generate random names (their names arent going to be pretty) and the year_level.append is that way (with
+# 2018 inside the brackets) because this is for the year 9 cohort (as said in the documents)
+
+student_count = random.randint(10, 50)
+
+for i in range(student_count):
+    first_names.append("")
+    for _ in range(random.randint(3, 8)):
+        first_names[i] = first_names[i] + random.choice(letters)
+    surnames.append("")
+    for _ in range(random.randint(5, 8)):
+        surnames[i] = surnames[i] + random.choice(letters)
+    year_level.append(2018)
+
+
+# this for loop should generate student usernames as i expected if done correctly
+
+usernames = []
+
+for i in range(student_count):
+    usernames.append()
+
+# this part of the program is to test whether i have done it correctly
+
+not_finished = True
+
+print(usernames)
 
 while not_finished:
-    response = question_func("Enter a student's username (enter ? for help)", "enter a student's username")
-    if response == "?":
-        response = question_func("Do you need to see their usernames?", "enter either y/n")
-        if response == "y":
-            text("List of students usernames")
-            print()
-            for student in first_names:
-                print(str(year_level[first_names.index(student)]) + surnames[first_names.index(student)].title() + student[0].upper())
+    response = question("Y/N are you finished with checking the student's usernames?").lower().strip()
+    if response == "y":
+        not_finished = False
+    elif response == "n":
+        response = question("Which item in the list would you like to see")
+        if int(response.isdigit()) and 0 >= int(response) <= student_count - 1:
+            print(usernames[int(response)])
+            text("{} {} {}".format(first_names[int(response)], surnames[int(response)], year_level[int(response)]))
+        else:
+            text("Error, enter a whole number between 0 and {}".format(student_count - 1))
     else:
-        text("That username doesnt exist")
+        text("Error, enter either Y/N")
