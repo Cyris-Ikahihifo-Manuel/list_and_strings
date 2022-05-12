@@ -49,7 +49,7 @@ for i in range(student_count):
     surnames.append("")
     for _ in range(random.randint(5, 8)):
         surnames[i] = surnames[i] + random.choice(letters)
-    year_level.append(2018)
+    year_level.append("2018")
 
 
 # this for loop should generate student usernames as i expected if done correctly
@@ -57,24 +57,13 @@ for i in range(student_count):
 usernames = []
 
 for i in range(student_count):
-    usernames.append()
+    usernames.append(year_level[i][2:4] + surnames[i].title() + first_names[i][0].upper())
 
 # this part of the program is to test whether i have done it correctly
 
 not_finished = True
 
 print(usernames)
-
-while not_finished:
-    response = question("Y/N are you finished with checking the student's usernames?").lower().strip()
-    if response == "y":
-        not_finished = False
-    elif response == "n":
-        response = question("Which item in the list would you like to see")
-        if int(response.isdigit()) and 0 >= int(response) <= student_count - 1:
-            print(usernames[int(response)])
-            text("{} {} {}".format(first_names[int(response)], surnames[int(response)], year_level[int(response)]))
-        else:
-            text("Error, enter a whole number between 0 and {}".format(student_count - 1))
-    else:
-        text("Error, enter either Y/N")
+print(first_names)
+print(surnames)
+print(year_level)
