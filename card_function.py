@@ -2,7 +2,7 @@
 
 import random
 
-# card function
+# card function that will generate a 'pack' of cards
 
 
 def shuffle_cards():
@@ -32,9 +32,12 @@ def shuffle_cards():
     return deck
 
 
-# the variables player1 and player2 call the shuffle_cards function but are on different lines of code because
-# if they would equal the same (they store the same lists or randomisation of 'cards')
+# if this goes as expected from me the
 
-deck_of_cards = shuffle_cards()
-random.shuffle(deck_of_cards)
-print(deck_of_cards)
+deck_of_cards = []
+for v in range(5):
+    deck_of_cards.append(v)
+for decks in range(4):
+    deck_of_cards[decks] = shuffle_cards()
+    random.shuffle(deck_of_cards[decks])
+    print(deck_of_cards[decks])

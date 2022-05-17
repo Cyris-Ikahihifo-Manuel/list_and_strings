@@ -24,30 +24,24 @@ def text(message):
 not_finished = True
 
 while not_finished:
-    text("""Lists of options
-    1: make a new account
-    2: display a password for an account
-    3: display list of accounts
-    4: you're done with program""")
-    response = input()
-    if response.isdigit():
-        if 1 >= int(response) <= 4:
-            if response == '1':
+    try:
+        text("""Lists of options
+        1: make a new account
+        2: display a password for an account
+        3: display list of accounts
+        4: you're done with program""")
+        response = int(input())
+        if 1 <= response <= 4:
+            if response == 1:
                 for i in range(3):
-                    while len(response) >= 1:
-                        response = input(question[0][i]).strip()
-                        passwords[i].append(response)
-            elif response == '2':
-                response = input(question[1])
-                account_exists = False
-                for account in passwords[0]:
-                    if response == account:
-                        account_exists = True
-                if account_exists:
-                    text("The password for account {] is {}".format(response, passwords[2][passwords[0].index(response)]))
-                else:
-                    text("Error, {} doesn't exist as an account".format(response))
-            elif response == '3':
+                    response = input(question[0][i]).strip()
+                    passwords[i].append(response)
+            elif response == 2:
+                response = input(question[1]).strip()
+                for i in range(len(passwords[0])):
+                    if passwords[0][i] == response:
+                        text("The password for {} is {}".format(passwords[0][i], passwords[2][i]))
+            elif response == 3:
                 text('List of accounts')
                 print()
                 for i in range(len(passwords[0])):
@@ -56,6 +50,6 @@ while not_finished:
                 text('Goodbye!')
                 not_finished = False
         else:
-            text('Error, enter a whole number between 1 and 4')
-    else:
-        text('Error, enter a whole number between 1 and 4')
+            text("Error, enter a whole number between 1 and 4")
+    except ValueError:
+        text("Error, enter a whole number between 1 and 4")
